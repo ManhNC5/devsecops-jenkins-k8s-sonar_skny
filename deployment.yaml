@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: sedevsecop
-        image: 767397696059.dkr.ecr.ca-central-1.amazonaws.com/asg
+        image: 767397696059.dkr.ecr.us-east-2.amazonaws.com/asg
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

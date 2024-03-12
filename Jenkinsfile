@@ -1,7 +1,7 @@
 pipeline {
   agent any
   tools { 
-        maven 'Maven_3_6_3'  
+        maven 'Maven_3_2_5'  
     }
    stages{
     stage('CompileandRunSonarAnalysis') {
@@ -30,7 +30,7 @@ pipeline {
    stage('Push') {
             steps {
                 script{
-                    docker.withRegistry('http://jenkins.fe.edu.vn/', 'ecr:ca-central-1:aws-credentials') {
+                    docker.withRegistry('http://jenkins.fe.edu.vn/', 'ecr:us-east-2:aws-credentials') {
                     app.push("latest")
                     }
                 }

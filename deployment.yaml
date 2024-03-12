@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sedevsecop-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sedevsecop
+  template:
+    metadata:
+      labels:
+        app: sedevsecop
+    spec:
+      containers:
+      - name: sedevsecop
+        image: 767397696059.dkr.ecr.ca-central-1.amazonaws.com/asg
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sedevsecop
+    k8s-app: sedevsecop
+  name: sedevsecop
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: sedevsecop
